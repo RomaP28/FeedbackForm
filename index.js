@@ -1,4 +1,4 @@
-import { countries } from './flags.js'
+// import { countries } from './flags.js'
 
 'use strict'
 
@@ -10,6 +10,18 @@ function init() {
   const inputEmail = document.querySelector('.inputEmail')
   const inputPhone = document.querySelector('#inputPhone')
   const datalist = document.querySelector('#datalistOptions')
+
+  const countries = [
+    { country: "US", number: 1 },
+    { country: "BE", number: 23 },
+    { country: "UA", number: 3 },
+    { country: "IT", number: 39 },
+    { country: "GB", number: 44 },
+    { country: "DK", number: 59 },
+    { country: "AU", number: 61 },
+    { country: "JP", number: 81 },
+    { country: "AR", number: 9 },
+  ];
 
 
   fetch("https://ipinfo.io/json?token=c54ae77dc28792").then(
