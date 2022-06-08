@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row vh-100">
+      <div class="col-xs-12 col-sm-12 col-md-8"
+        style="background: url(https://picsum.photos/id/135/700/900) center no-repeat; background-size: cover;">
+        <div class="container d-flex flex-column justify-content-center h-100 text-light text-center">
+          <h1 class="text-uppercase">Lorem ipsum</h1>
+          <p class="fst-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            At iure repellat ipsa sapiente similique quos.</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="container d-flex flex-column justify-content-center h-100 ">
+          <form class="needs-validation" novalidate>
+            <div class="form-floating mb-3">
+              <input type="text" class="inputName form-control" pattern="[A-Za-z]{2,35}" placeholder="First name"
+                required>
+              <label for="floatingInput">First name</label>
+              <div class="invalid-feedback">Input should contain only letters (at least two)</div>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="inputName form-control" pattern="[A-Za-z]{2,35}" placeholder="Last name"
+                required>
+              <label for="floatingInput">Last name</label>
+              <div class="invalid-feedback">Input should contain only letters (at least two)</div>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="inputEmail form-control" id="floatingInput"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="email@example.com" required>
+              <label for="floatingInput">Email address</label>
+              <div class="invalid-feedback">The email address should contain @ and .</div>
+            </div>
+            <div>
+              <input class="form-control" list="datalistOptions" pattern="^\+[0-9]{12,14}" maxlength="14"
+                style="height: 56px; background-repeat: no-repeat; background-position: bottom 20px right 20px;"
+                id="inputPhone" placeholder="Phone">
+              <div class="invalid-feedback mt-0 pt-0">Allowed phone format +12345678901234</div>
+              <datalist id="datalistOptions">
+              </datalist>
+            </div>
+            <button type="submit" class="btn btn-primary  mt-3">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <script type="module" src="./index.js"></script>
+  <script type="module" src="./flags.js"></script>
+</body>
+
+</html>
