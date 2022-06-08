@@ -8,7 +8,8 @@ function init() {
   const form = document.querySelector('.needs-validation')
   const inputName = document.querySelectorAll('.inputName')
   const inputEmail = document.querySelector('.inputEmail')
-  const inputPhone = document.querySelector('#inputPhone')
+  const phoneCode = document.querySelector('#inputCode')
+  const inputPhone = document.querySelector('.inputPhone')
   const datalist = document.querySelector('#datalistOptions')
 
   fetch("https://ipinfo.io/json?token=c54ae77dc28792").then(
@@ -41,27 +42,35 @@ function init() {
     }
   })
 
-  inputPhone.addEventListener('input', () => {
-    if (inputPhone.value[0] !== '+' || inputPhone.value.length < 1) {
-      inputPhone.value = `+${inputPhone.value}`
+  phoneCode.addEventListener('input', () => {
+    if (phoneCode.value[0] !== '+' || phoneCode.value.length < 1) {
+      phoneCode.value = `+${phoneCode.value}`
     }
+    if (!phoneCode.value[phoneCode.value.length - 1].match(/^[0-9]+/g)) {
+      phoneCode.value = phoneCode.value.substring(0, phoneCode.value.length - 1);
+    }
+    if (phoneCode.value.substring(1, 4)) {
+      let codeFlag = phoneCode.value.substring(1, 4)
+      countries.forEach(e => e.number == codeFlag && setFlag(e.country.toLowerCase()))
+    }
+  }
+  )
+
+  inputPhone.addEventListener('input', () => {
     if (!inputPhone.value[inputPhone.value.length - 1].match(/^[0-9]+/g)) {
       inputPhone.value = inputPhone.value.substring(0, inputPhone.value.length - 1);
     }
-    if (inputPhone.value.substring(1, 4)) {
-      let codeFlag = inputPhone.value.substring(1, 4)
-      countries.forEach(e => { e.number == codeFlag ? setFlag(e.country.toLowerCase()) : null })
-    }
     if (!form.classList.contains('was-validated')) return
-    if (!inputPhone.value.match(/^\+[0-9]{12,14}/g)) {
-      setFeedbak(inputPhone.nextElementSibling, 'Phone format allows 12-14 numbers')
+    if (!inputPhone.value.match(/^[0-9]{10,12}/g)) {
+      setFeedbak(inputPhone.parentNode.lastElementChild, 'Phone format allows 12-14 numbers')
     } else {
-      inputPhone.nextElementSibling.style.display = 'none'
+      inputPhone.parentNode.lastElementChild.style.display = 'none'
     }
   }
   )
 
   const setFlag = countryCode => {
+    if (!countryCode) return
     inputPhone.style.backgroundImage = `url(https://flagcdn.com/16x12/${countryCode}.png)`
   }
 
@@ -69,17 +78,16 @@ function init() {
     countries.forEach(e => {
       datalist.innerHTML += `<option value=+${e.number}>`
       if (e.country === userCountry) {
-        inputPhone.value = `+${e.number}`
+        phoneCode.value = `+${e.number}`
         setFlag(e.country.toLowerCase())
       }
     })
   }
 
-
   const checkFirstLastNames = (elem, data) => {
     if (data.length < 2) {
       setFeedbak(elem, 'Input required at least 2 letters')
-    } else if (!data.match(/^[A-Za-z]{2,35}$/gm)) {
+    } else if (!data.match(/^[A-Za-zА-Яа-я]{2,35}$/gm)) {
       setFeedbak(elem, 'Input required only letters. No numbers and symbols')
     } else {
       elem.style.display = 'none'
@@ -102,4 +110,5 @@ function init() {
     elem.style.display = 'block'
     elem.innerHTML = message;
   }
+
 }

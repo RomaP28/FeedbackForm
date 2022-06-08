@@ -24,13 +24,13 @@
         <div class="container d-flex flex-column justify-content-center h-100 ">
           <form class="needs-validation" novalidate>
             <div class="form-floating mb-3">
-              <input type="text" class="inputName form-control" pattern="[A-Za-z]{2,35}" placeholder="First name"
+              <input type="text" class="inputName form-control" pattern="[A-Za-zА-Яа-я]{2,35}" placeholder="First name"
                 required>
               <label for="floatingInput">First name</label>
               <div class="invalid-feedback">Input should contain only letters (at least two)</div>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="inputName form-control" pattern="[A-Za-z]{2,35}" placeholder="Last name"
+              <input type="text" class="inputName form-control" pattern="[A-Za-zА-Яа-я]{2,35}" placeholder="Last name"
                 required>
               <label for="floatingInput">Last name</label>
               <div class="invalid-feedback">Input should contain only letters (at least two)</div>
@@ -41,13 +41,23 @@
               <label for="floatingInput">Email address</label>
               <div class="invalid-feedback">The email address should contain @ and .</div>
             </div>
-            <div>
-              <input class="form-control" list="datalistOptions" pattern="^\+[0-9]{12,14}" maxlength="14"
-                style="height: 56px; background-repeat: no-repeat; background-position: bottom 20px right 20px;"
-                id="inputPhone" placeholder="Phone">
-              <div class="invalid-feedback mt-0 pt-0">Allowed phone format +12345678901234</div>
-              <datalist id="datalistOptions">
-              </datalist>
+            <div class="mb-3 d-flex">
+              <div class="form-floating w-25">
+                <input class="form-control" list="datalistOptions" maxlength="4" pattern="^\+[0-9]{1,3}" id="inputCode"
+                  placeholder="Phone Code" novalidation>
+                <div class="invalid-feedback"></div>
+                <label for="floatingInput">Code</label>
+                <datalist id="datalistOptions">
+                </datalist>
+              </div>
+              <div class="form-floating w-100">
+                <input type="phone" class="inputPhone form-control" id="floatingInput" maxlength="12"
+                  style="height: 58px; background-repeat: no-repeat; background-position: bottom 20px right 20px;"
+                  pattern="^[0-9]{10,12}" placeholder="Phone" required>
+                <label for="floatingInput">Phone</label>
+                <div class="invalid-feedback">Allowed phone format +12345678901234</div>
+              </div>
+
             </div>
             <button type="submit" class="btn btn-primary  mt-3">Submit</button>
           </form>
